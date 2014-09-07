@@ -13,6 +13,10 @@ Because we have lots of paid applications out there that allow you to chat using
 2. You can fork and play around and add new features to it instead of making a feature request while using a paid app.
 3. It provides a lot of insights as to how to deal with lots of traffic when using node and how to scale it.
 
+# Note
+
+All the active development is done the **develop** branch. Only releases will be merged on the master as and when done.
+
 # License
 
 This software is licensed under the MIT license specifications.
