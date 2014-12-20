@@ -16,13 +16,14 @@ Because we have lots of paid applications out there that allow you to chat using
 # Technology Stack (Initial Proposal)
 
 1. Angular for the front-end
-2. Express as a node.js framework.
+2. Hapi.js as a node.js framework.
 3. MongoDB for the database(using Mongoose)
 4. Browserify to load all the dependencies and bundling and minification.
 5. Gulp for the build tasks
 6. Protractor for the e2e tests 
 7. Mocha for the express tests
 
+# [Wiki](https://github.com/Pranay92/lets-chat/wiki)
 
 # Note
 
