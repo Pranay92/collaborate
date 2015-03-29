@@ -12,6 +12,7 @@ Because we have lots of paid applications out there that allow you to chat using
 1. You don't have to pay for chat apps.
 2. You can fork and play around and add new features to it instead of making a feature request while using a paid app.
 3. It provides a lot of insights as to how to deal with lots of traffic when using node and how to scale it.
+4. Chat wherever you are with hybrid mobile app build using Ionic framework.
 
 # Technology Stack (Initial Proposal)
 
@@ -19,9 +20,10 @@ Because we have lots of paid applications out there that allow you to chat using
 2. Hapi.js as a node.js framework.
 3. MongoDB for the database(using Mongoose)
 4. Browserify to load all the dependencies and bundling and minification.
-5. Gulp for the build tasks
-6. Protractor for the e2e tests 
-7. Mocha for the express tests
+5. Gulp for the build tasks.
+6. Protractor for the e2e tests. 
+7. Mocha for the express tests.
+8. Ionic Framework for mobile app.
 
 # [Wiki](https://github.com/Pranay92/lets-chat/wiki)
 
