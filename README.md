@@ -24,6 +24,9 @@ Because we have lots of paid applications out there that allow you to chat using
 6. Protractor for the e2e tests. 
 7. Mocha for the express tests.
 8. Ionic Framework for mobile app.
+9. Server monitoring and logs - PM2.
+10. Server side session storage - Redis.
+11. Messaging queue - RabbitMQ.
 
 # [Wiki](https://github.com/Pranay92/lets-chat/wiki)
 
