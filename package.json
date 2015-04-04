@@ -1,0 +1,26 @@
+{
+  "name": "lets-chat",
+  "version": "0.0.0",
+  "description": "Chat application server using hapi and mongodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pranay92/lets-chat.git"
+  },
+  "keywords": [
+    "chat"
+  ],
+  "author": "pranaydubey3009@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pranay92/lets-chat/issues"
+  },
+  "homepage": "https://github.com/Pranay92/lets-chat",
+  "dependencies": {
+    "globby": "^1.2.0",
+    "hapi": "^8.4.0"
+  }
+}
