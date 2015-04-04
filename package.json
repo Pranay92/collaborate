@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Pranay92/lets-chat",
   "dependencies": {
+    "bluebird": "^2.9.24",
     "globby": "^1.2.0",
     "hapi": "^8.4.0"
   }
