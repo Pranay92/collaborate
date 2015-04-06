@@ -1,12 +1,11 @@
 var mongoose = require('mongoose'),
-  timestamps = require('mongoose-timestamp'),
   bcrypt = require('bcryptjs'),
   util = require('util'),
   Schema = mongoose.Schema,
   _ = require('lodash'),
   SALT_WORK_FACTOR = 10,
-  LoadEmail = require('mongoose-type-email'),
-  Email : mongoose.schemaTypes.Email;
+  validate = require('mongoose-validate');
+
 
 
 var schema = {
@@ -22,12 +21,13 @@ var schema = {
 	},
 	emails : [{
 		address : {
-			type : Email,
+			type : String,
 			required : true,
-			primary : {
-				type : Boolean,
-				default : true
-			}
+			validate  : [validate.email, 'Invalid email address']
+		},
+		primary : {
+			type : Boolean,
+			default : true
 		}
 	}],
 	dob : {
@@ -45,7 +45,7 @@ var schema = {
 		}
 	},
 	groups : [{
-		type : mongoose.Schema.types.ObjectId,
+		type : mongoose.Types.ObjectId,
 		ref : 'Group'
 	}],
 	password : {
