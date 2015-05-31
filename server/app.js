@@ -10,6 +10,8 @@ require('./database/config.js');
 
 require('./modules/route.js')(server);
 
+require('./auth')(server);
+
 server.start(function() {
 	console.log('Server listennig on port ' + server.info.uri);
 })

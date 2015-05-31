@@ -8,7 +8,10 @@ module.exports = {
 		method : 'GET',
 		path : '/users',
 		config : {
-			'handler' : function(request,reply) {
+			auth : {
+				strategy : 'token'
+			},
+			handler : function(request,reply) {
 				User.find({})
 					.then(reply)
 					.catch(function(e) {
