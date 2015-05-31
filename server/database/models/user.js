@@ -45,7 +45,7 @@ var schema = {
 		}
 	},
 	groups : [{
-		type : mongoose.Types.ObjectId,
+		type : Schema.ObjectId,
 		ref : 'Group'
 	}],
 	password : {
@@ -56,6 +56,10 @@ var schema = {
 		type : String,
 		required : true,
 		unique : true
+	},
+	created : {
+		type : Date,
+		default : Date.now()
 	}
 };
 
