@@ -7,9 +7,9 @@ var mongoose = require('bluebird').promisifyAll(require('mongoose')),
     requireDirectory = require('require-directory'),
     Promise = require('bluebird'),
     mongoose = require('mongoose'),
-    async = require('async');
+    async = require('async'),
+    uri;
 
-var uri;
 // Require all the mongoose models declarations
 exports.models = requireDirectory(module, __dirname + '/models');
 
