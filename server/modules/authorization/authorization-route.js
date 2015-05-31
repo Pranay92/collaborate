@@ -3,6 +3,9 @@ var Promise = require('bluebird'),
   	mongoose = Promise.promisifyAll(require('mongoose')),
   	User = mongoose.model('User');
   	jwt = require('jsonwebtoken'),
+    Promise = require('bluebird'),
+    redis = require('redis'),
+    client = Promise.promisifyAll(redis.createClient()),
     privateKey = process.env.secret || 'BbZJjyoXAdr8BUZuiKKARWimKfrSmQ6fv8kZ7OFfc';
 
 module.exports = {
@@ -11,8 +14,13 @@ module.exports = {
 		path : '/login',
 		config : {
 			handler : function(request,reply) {
-				var token = jwt.sign({ userId: '1' }, privateKey);
-				reply(token);
+				var authObj = {'userId' : '1', scope : 'admin'};
+				var token1 = jwt.sign(authObj, privateKey);
+				authObj.token = token1;
+				var token2 = jwt.sign(authObj, privateKey);
+
+				client.HMSET(token1,authObj);
+				reply(token2);
 			}
 		}
 	}

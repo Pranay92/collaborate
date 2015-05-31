@@ -9,7 +9,8 @@ module.exports = {
 		path : '/users',
 		config : {
 			auth : {
-				strategy : 'token'
+				strategy : 'token',
+				scope : ['admin']
 			},
 			handler : function(request,reply) {
 				User.find({})
