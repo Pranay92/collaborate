@@ -2,15 +2,17 @@ var hapi = require('hapi');
 require('dotenv').load();
 
 // Create a server with a host, port, and options
-var server = new hapi.Server();
+var server = module.exports = new hapi.Server();
 
 server.connection({'port' : 3000})
 
-require('./database/config.js');
+require('./database/config');
 
-require('./modules/route.js')(server);
+require('./modules/index');
 
-require('./auth')(server);
+require('./auth');
+
+require('./database/startup');
 
 server.start(function() {
 	console.log('Server listennig on port ' + server.info.uri);

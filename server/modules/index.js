@@ -1,6 +1,7 @@
-var globby = require('globby');
+var globby = require('globby'),
+	server = require('../app')
 
-module.exports = function(server) {
+module.exports = function() {
 	var routes,
 		len;
 	

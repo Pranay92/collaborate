@@ -8,22 +8,23 @@ var mongoose = require('bluebird').promisifyAll(require('mongoose')),
     Promise = require('bluebird'),
     mongoose = require('mongoose'),
     async = require('async'),
+    models = [],
     uri;
+exports.models = requireDirectory(module, './models');
 
-// Require all the mongoose models declarations
-exports.models = requireDirectory(module, __dirname + '/models');
-
-// Format the mongo connection URI
 uri = mongodbUri.formatMongoose({
   hosts: JSON.parse(process.env.MONGO_HOSTS),
   database: process.env.MONGO_DATABASE,
 });
 
-// Connect to the mongodb
 mongoose.connect(uri);
 
 mongoose.connection.on('error', console.error.bind(console));
-
 mongoose.connection.once('open', function () {
   console.log('mongodb connection established.');
 });
+
+
+
+
+

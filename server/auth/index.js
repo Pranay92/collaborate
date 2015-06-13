@@ -2,7 +2,8 @@ var jwt = require('jsonwebtoken'),
     Promise = require('bluebird'),
     redis = require('redis'),
     client = Promise.promisifyAll(redis.createClient()),
-    privateKey = process.env.secret || 'BbZJjyoXAdr8BUZuiKKARWimKfrSmQ6fv8kZ7OFfc';
+    privateKey = process.env.secret || 'BbZJjyoXAdr8BUZuiKKARWimKfrSmQ6fv8kZ7OFfc',
+    server = require('../app');
 
 var validate = function (decodedToken, callback) {
 
@@ -21,7 +22,7 @@ var validate = function (decodedToken, callback) {
 };
 
 
-module.exports = function(server) {
+module.exports = function() {
     server.register(require('hapi-auth-jwt'), function (error) {
 
         server.auth.strategy('token', 'jwt', {
