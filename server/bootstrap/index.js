@@ -1,25 +1,10 @@
 var Promise = require('bluebird'),
   	mongoose = Promise.promisifyAll(require('mongoose')),
   	User = mongoose.model('User'),
-  	async = require('async');
-
+  	async = require('async'),
+    users = require('./users');
 
 function bootstrapUsers() {
-  
-  var users = [{
-    name : {
-      'first' : 'Pranay',
-      'last' : 'Dubey'
-    },
-    dob : {
-      year : 1992,
-      month : 9,
-      date : 30
-    },
-    password : 'demo',
-    username : 'pranay@lets-chat.com',
-    type : 'Admin'
-  }];
 
   var currModel,
       currUser;
