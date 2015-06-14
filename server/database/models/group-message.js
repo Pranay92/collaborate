@@ -1,11 +1,5 @@
 var mongoose = require('mongoose'),
-  bcrypt = require('bcryptjs'),
-  util = require('util'),
-  Schema = mongoose.Schema,
-  _ = require('lodash'),
-  SALT_WORK_FACTOR = 10,
-  validate = require('mongoose-validate');
-
+  Schema = mongoose.Schema;
 
 var schema = {
 	from : {
@@ -24,9 +18,7 @@ var schema = {
 		type : Date,
 		default : Date.now()
 	}
-}
-
-
+};
 
 var MongooseSchema = new mongoose.Schema(schema);
 
