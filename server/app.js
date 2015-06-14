@@ -6,13 +6,13 @@ var server = module.exports = new hapi.Server();
 
 server.connection({'port' : 3000})
 
-require('./database/config');
+require('./database');
 
-require('./modules/index');
+require('./modules');
 
 require('./auth');
 
-require('./database/startup');
+require('./bootstrap');
 
 server.start(function() {
 	console.log('Server listennig on port ' + server.info.uri);
