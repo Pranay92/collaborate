@@ -1,7 +1,7 @@
 var globby = require('globby'),
 	server = require('../app')
 
-module.exports = function() {
+function SetupRoutes() {
 	var routes,
 		len;
 	
@@ -31,3 +31,5 @@ function walkThroughRoutes(routes,server) {
 		server.route(routes[routeName]);
 	});
 }
+
+SetupRoutes();

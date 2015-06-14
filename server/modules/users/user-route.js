@@ -1,7 +1,10 @@
 var Promise = require('bluebird'),
   	boom = require('boom'),
   	mongoose = Promise.promisifyAll(require('mongoose')),
-  	User = mongoose.model('User');
+  	User = mongoose.model('User'),
+  	Controller = require('./user-controller'),
+  	Validator = require('./user-validator'),
+  	Series = require('../../utils/process');
 
 module.exports = {
 	get : {
@@ -13,11 +16,11 @@ module.exports = {
 				scope : ['admin']
 			},
 			handler : function(request,reply) {
-				User.find({})
-					.then(reply)
-					.catch(function(e) {
-						reply(boom.badData({'msg' : 'Cannot fetch users','error' : e}));
-					});
+				(new Series([
+					Validator.validateGet,
+					Controller.get
+					]))
+				.execute(request,reply);
 			}
 		}
 	}

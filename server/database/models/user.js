@@ -50,7 +50,7 @@ var schema = {
 		unique : true
 	},
 	created : {
-		type : Date,
+		type : Number,
 		default : Date.now()
 	},
 	type : {

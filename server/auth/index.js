@@ -22,7 +22,7 @@ var validate = function (decodedToken, callback) {
 };
 
 
-module.exports = function() {
+function setup() {
     server.register(require('hapi-auth-jwt'), function (error) {
 
         server.auth.strategy('token', 'jwt', {
@@ -33,3 +33,5 @@ module.exports = function() {
         console.log('Authorization strategy implemented');
     });
 }
+
+setup();
