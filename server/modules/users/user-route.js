@@ -16,11 +16,15 @@ module.exports = {
 				scope : ['admin']
 			},
 			handler : function(request,reply) {
-				(new Series([
+				
+				var funcArray = [
 					Validator.validateGet,
 					Controller.get
-					]))
-				.execute(request,reply);
+				];
+
+				var series = new Series(funcArray);
+				series.execute(request,reply);
+
 			}
 		}
 	}
