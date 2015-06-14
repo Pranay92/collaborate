@@ -78,7 +78,7 @@ MongooseSchema.virtual('authenticationResponse').get(function () {
 
   var response = {
     id: this._id, // Persons mongo id
-    type: this.__t, // Persons role such as , member, doctor etc.
+    type: this.type, // Persons role such as , member, doctor etc.
     name: this.name // Persons name for convenience
   };
 
@@ -104,7 +104,7 @@ MongooseSchema.statics.LocalStrategy = function (username, password, done) {
   this.findOne({
     username: usernameRegExp,
     active: true
-  }, 'id password __t name', function (err, person) {
+  }, 'id password type name', function (err, person) {
 
     // Mongo general error running query
     if (err)
@@ -121,7 +121,7 @@ MongooseSchema.statics.LocalStrategy = function (username, password, done) {
         return done(err);
 
       if (isMatch)
-        return done(null, person.authenticationResponse); // Password matched!  Let user in and send back in the body an object with the id and __t
+        return done(null, person.authenticationResponse); // Password matched!  Let user in and send back in the body an object with the id and type
       else
         return done(new Error('Password is incorrect.')); // Password did not match
     });
@@ -158,7 +158,7 @@ function SetupMapReduceStatsQuery(discriminatorType) {
   if (_.isNull(discriminatorType))
     query = {active: {$in: [true, false]}};
   else
-    query = {active: {$in: [true, false]}, __t: discriminatorType};
+    query = {active: {$in: [true, false]}, type: discriminatorType};
 
   return query;
 
@@ -196,14 +196,16 @@ MongooseSchema.pre('save', PreSave);
 function PreSave(next) {
 
   var user = this;
-  console.log('reaching ehre');
+
+  this.type = 'User';
+
   // Password was not modified so do not encrypt,
   if (!user.isModified('password'))
     next();
 
   // Has the password
   bcrypt.hash(user.password, SALT_WORK_FACTOR, function (err, hash) {
-    console.log('Hashed value ', hash);
+    
     if (err) {
       next(err); // Throw error because the password was not able to be hased.
     } else {
