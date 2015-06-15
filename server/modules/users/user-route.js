@@ -4,7 +4,7 @@ var Promise = require('bluebird'),
   	User = mongoose.model('User'),
   	Controller = require('./user-controller'),
   	Validator = require('./user-validator'),
-  	Series = require('../../utils/process');
+  	Series = require('hapi-next');
 
 module.exports = {
 	get : {

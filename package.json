@@ -28,6 +28,7 @@
     "globby": "^1.2.0",
     "hapi": "^8.4.0",
     "hapi-auth-jwt": "^2.1.2",
+    "hapi-next": "0.0.6",
     "jsonwebtoken": "^5.0.1",
     "lodash": "^3.6.0",
     "mongodb-uri": "^0.9.7",
