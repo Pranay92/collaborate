@@ -15,10 +15,11 @@ module.exports = {
 				strategy : 'token',
 				scope : ['admin']
 			},
+			validate : Validator.validateReqGet(),
 			handler : function(request,reply) {
 				
 				var funcArray = [
-					Validator.validateGet,
+					Validator.get,
 					Controller.get
 				];
 

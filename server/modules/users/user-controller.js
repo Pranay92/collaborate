@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+var Promise = require('bluebird'),
+	mongoose = Promise.promisifyAll(require('mongoose')),
 	User = mongoose.model('User');
 
 module.exports = {
