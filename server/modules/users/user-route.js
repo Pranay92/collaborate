@@ -7,6 +7,27 @@ var Promise = require('bluebird'),
   	Series = require('hapi-next');
 
 module.exports = {
+	one : {
+		method : 'GET',
+		path : '/users/{id}',
+		config : {
+			auth : {
+				strategy : 'token',
+				scope : ['admin']
+			},
+			validate : Validator.validateReqOne(),
+			handler : function(request,reply) {
+
+				var funcArray = [
+					Validator.one,
+					Controller.one
+				];
+
+				var series = new Series(funcArray);
+				series.execute(request,reply);
+			}
+		}
+	},
 	get : {
 		method : 'GET',
 		path : '/users',
@@ -28,5 +49,26 @@ module.exports = {
 
 			}
 		}
-	}
+	},
+	add : {
+		method : 'POST',
+		path : '/users',
+		config : {
+			auth : {
+				strategy : 'token',
+				scope : ['admin']
+			},
+			validate : Validator.validateReqAdd(),
+			handler : function(request,reply) {
+
+				var funcArray = [
+					Validator.add,
+					Controller.add
+				];
+
+				var series = new Series(funcArray);
+				series.execute(request,reply);
+			}
+		}
+	},
 }

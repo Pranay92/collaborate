@@ -1,6 +1,8 @@
 var Promise = require('bluebird'),
 	mongoose = Promise.promisifyAll(require('mongoose')),
-	User = mongoose.model('User');
+	User = mongoose.model('User'),
+	joi = require('joi'),
+	pattern = require('../../utils/pattern');
 
 module.exports = {
 
@@ -25,7 +27,19 @@ module.exports = {
 };
 
 function One(request,reply,next) {
-	next();
+	User.findByIdAsync(request.params.id)
+		.then(function(userExist){
+			
+			if(!userExist) {
+				return next('User not found');
+			}
+
+			reply.data = userExist;
+			next();
+		})
+		.catch(function(e) {
+			next(e);
+		})
 }
 
 function Add(request,reply,next) {
@@ -62,7 +76,9 @@ function BulkDelete(request,reply,next) {
 function ValidateReqOne(request,reply,next) {
 
 	return {
-
+		params : {
+			id : joi.string().regex(pattern.objectId)
+		}
 	};
 
 }
