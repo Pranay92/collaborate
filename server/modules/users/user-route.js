@@ -1,7 +1,4 @@
-var Promise = require('bluebird'),
-  	boom = require('boom'),
-  	mongoose = Promise.promisifyAll(require('mongoose')),
-  	User = mongoose.model('User'),
+var boom = require('boom'),
   	Controller = require('./user-controller'),
   	Validator = require('./user-validator'),
   	Series = require('hapi-next');

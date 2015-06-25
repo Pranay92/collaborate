@@ -26,54 +26,54 @@ module.exports = {
 
 };
 
-function One(request,reply,next) {
+function One(request,reply) {
 	User.findByIdAsync(request.params.id)
 		.then(function(userExist){
 			
 			if(!userExist) {
-				return next('User not found');
+				return reply.continue('User not found');
 			}
 
 			reply.data = userExist;
-			next();
+			reply.continue();
 		})
 		.catch(function(e) {
-			next(e);
+			reply.continue(e);
 		})
 }
 
-function Add(request,reply,next) {
-	next();
+function Add(request,reply) {
+	reply.continue();
 }
 
-function Edit(request,reply,next) {
-	next();
+function Edit(request,reply,data) {
+	reply.continue();
 }
 
-function Delete(request,reply,next) {
-	next();
+function Delete(request,reply,data) {
+	reply.continue();
 }
 
-function Get(request,reply,next) {
-	next();
+function Get(request,reply,data) {
+	reply.continue();
 }
 
-function BulkAdd(request,reply,next) {
-	next();
+function BulkAdd(request,reply,data) {
+	reply.continue();
 }
 
-function BulkEdit(request,reply,next) {
-	next();
+function BulkEdit(request,reply,data) {
+	reply.continue();
 }
 
-function BulkDelete(request,reply,next) {
-	next();
+function BulkDelete(request,reply,data) {
+	reply.continue();
 }
 
 
 
 
-function ValidateReqOne(request,reply,next) {
+function ValidateReqOne(request,reply,data) {
 
 	return {
 		params : {
@@ -83,49 +83,49 @@ function ValidateReqOne(request,reply,next) {
 
 }
 
-function ValidateReqAdd(request,reply,next) {
+function ValidateReqAdd() {
 
 	return {
 
 	};
 }
 
-function ValidateReqEdit(request,reply,next) {
+function ValidateReqEdit() {
 
 	return {
 
 	};
 }
 
-function ValidateReqDelete(request,reply,next) {
+function ValidateReqDelete() {
 
 	return {
 
 	};
 }
 
-function ValidateReqGet(request,reply,next) {
+function ValidateReqGet() {
 
 	return {
 
 	};
 }
 
-function ValidateReqBulkAdd(request,reply,next) {
+function ValidateReqBulkAdd() {
 
 	return {
 
 	};
 }
 
-function ValidateReqBulkEdit(request,reply,next) {
+function ValidateReqBulkEdit() {
 
 	return {
 
 	};
 }
 
-function ValidateReqBulkDelete(request,reply,next) {
+function ValidateReqBulkDelete() {
 
 	return {
 
