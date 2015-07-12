@@ -1,6 +1,6 @@
 var boom = require('boom'),
-  	Controller = require('./user-controller'),
-  	Validator = require('./user-validator'),
+  	Controller = require('modules/users/user-controller'),
+  	Validator = require('modules/users/user-validator'),
   	Series = require('hapi-next');
 
 module.exports = {

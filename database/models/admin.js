@@ -1,4 +1,4 @@
-var User = require('./user');
+var User = require('database/models/user');
 
 var schema = {
 };

@@ -7,7 +7,7 @@ var Promise = require('bluebird'),
     redis = require('redis'),
     client = Promise.promisifyAll(redis.createClient()),
     privateKey = process.env.secret || 'BbZJjyoXAdr8BUZuiKKARWimKfrSmQ6fv8kZ7OFfc',
-    authUtils = require('../../utils/auth');
+    authUtils = require('utils/auth');
 
 module.exports = {
 	post : {

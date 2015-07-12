@@ -2,7 +2,7 @@ var Promise = require('bluebird'),
   	mongoose = Promise.promisifyAll(require('mongoose')),
   	User = mongoose.model('User'),
   	async = require('async'),
-    users = require('./users');
+    users = require('bootstrap/users');
 
 function bootstrapUsers() {
 

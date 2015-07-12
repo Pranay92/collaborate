@@ -2,7 +2,7 @@ var Promise = require('bluebird'),
 	mongoose = Promise.promisifyAll(require('mongoose')),
 	User = mongoose.model('User'),
 	joi = require('joi'),
-	pattern = require('../../utils/pattern');
+	pattern = require('utils/pattern');
 
 module.exports = {
 

@@ -3,7 +3,7 @@ var jwt = require('jsonwebtoken'),
     redis = require('redis'),
     client = Promise.promisifyAll(redis.createClient()),
     privateKey = process.env.secret || 'BbZJjyoXAdr8BUZuiKKARWimKfrSmQ6fv8kZ7OFfc',
-    server = require('../app');
+    server = require('../app'); // find a way to include the main file by requiring lets-chat instead of ../app
 
 var validate = function (decodedToken, callback) {
 
