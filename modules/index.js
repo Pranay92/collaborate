@@ -1,11 +1,11 @@
 var globby = require('globby'),
-	server = require('../app')
+	server = require('../app');
 
 function SetupRoutes() {
 	var routes,
 		len;
 	
-	globby(['**/*-route.js'],function(err,paths) {
+	globby(['modules/**/*-route.js'],function(err,paths) {
 		len = paths.length;
 		while(len--) {
 			paths[len] = processPath(paths[len]);

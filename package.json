@@ -1,10 +1,12 @@
 {
   "name": "lets-chat",
-  "version": "0.0.0",
+  "private" : true,
+  "version": "0.1.0",
   "description": "Chat application server using hapi and mongodb",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall" : "npm --prefix=. link database/ modules/ utils/ bootstrap/ auth/"
   },
   "repository": {
     "type": "git",
@@ -28,7 +30,7 @@
     "globby": "^1.2.0",
     "hapi": "^8.4.0",
     "hapi-auth-jwt": "^2.1.2",
-    "hapi-next": "^0.2.1",
+    "hapi-next": "0.3.0",
     "joi": "^6.4.3",
     "jsonwebtoken": "^5.0.1",
     "lodash": "^3.6.0",

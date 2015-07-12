@@ -10,6 +10,7 @@ var mongoose = require('bluebird').promisifyAll(require('mongoose')),
     async = require('async'),
     models = [],
     uri;
+    
 exports.models = requireDirectory(module, './models');
 
 uri = mongodbUri.formatMongoose({

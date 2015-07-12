@@ -15,9 +15,9 @@ module.exports = {
 	
 };
 
-function One(request,reply,data) {
+function One(request,reply) {
 	
-	if(reply.data) {
+	if(reply.data && reply.data._id) {
 		return reply.continue();
 	}
 
@@ -31,19 +31,19 @@ function One(request,reply,data) {
 		});
 }
 
-function Add(request,reply,data) {
+function Add(request,reply) {
 	reply.continue();
 }
 
-function Edit(request,reply,data) {
+function Edit(request,reply) {
 	reply.continue();
 }
 
-function Delete(request,reply,data) {
+function Delete(request,reply) {
 	reply.continue();
 }
 
-function Get(request,reply,data) {
+function Get(request,reply) {
 	User.find({})
 		.then(function(users) {
 			reply.data = users;
@@ -54,14 +54,14 @@ function Get(request,reply,data) {
 		});
 }
 
-function BulkAdd(request,reply,data) {
+function BulkAdd(request,reply) {
 	reply.continue();
 }
 
-function BulkEdit(request,reply,data) {
+function BulkEdit(request,reply) {
 	reply.continue();
 }
 
-function BulkDelete(request,reply,data) {
+function BulkDelete(request,reply) {
 	reply.continue();
 }
