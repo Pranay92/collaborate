@@ -30,6 +30,9 @@ Because we have lots of paid applications out there that allow you to chat using
 
 # [Wiki](https://github.com/Pranay92/lets-chat/wiki)
 
+# Getting Started
+Head over to the README inside ````server```` folder for instructions on setting up the server. The client is yet to be implemented. 
+
 # Note
 
 All the active development is done the **develop** branch. Only releases will be merged on the master as and when done.
