@@ -7,33 +7,33 @@ var Promise = require('bluebird'),
     users = require('bootstrap/users'),
     admins = require('bootstrap/admins'),
     groups = require('bootstrap/groups'),
-    defaultGroup,
-    defaultAdmins = [];
-
-
-
+    defaultAdmins = [],
+    defaultGroups = [];
 
 setTimeout(function() {
   
   var funcArray = [
     {
       execute : admins.bootstrap,
-      argument : defaultAdmins
+      argument : [defaultAdmins]
     },
     {
       execute : groups.bootstrap,
-      argument : defaultAdmins
+      argument : [defaultAdmins,defaultGroups]
     },
     {
       execute : users.bootstrap,
-      argument : null
+      argument : [defaultGroups]
     }
-  ];
+  ],
+  argumentArray;
 
   async.series(funcArray.map(function(currFunc) {
     
     return function(cb) {
-      currFunc.execute.call({},cb,currFunc.argument);
+      argumentArray = currFunc.argument;
+      argumentArray.unshift(cb);
+      currFunc.execute.apply({},argumentArray);
     }
 
   }),function(err,results) {

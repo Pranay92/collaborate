@@ -18,7 +18,7 @@ collection = [
 ];
 
 
-function BootStrap(mainCb,defaultAdmins) {
+function BootStrap(mainCb,defaultAdmins,defaultGroups) {
 
   var currGroup;
 
@@ -37,6 +37,12 @@ function BootStrap(mainCb,defaultAdmins) {
                   currGroup = new Group(grpObj);
                   return currGroup.saveAsync();
                   
+               })
+               .then(function(groupCreated) {
+                  if(groupCreated) {
+                    groupCreated = groupCreated[0];
+                    defaultGroups.push(groupCreated._id);
+                  }
                })
                .finally(function() {
                 cb();

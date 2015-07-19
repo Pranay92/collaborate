@@ -27,7 +27,7 @@ collection = [
 ];
 
 
-function BootStrap(mainCb) {
+function BootStrap(mainCb,defaultGroups) {
 
   var currUser;
 
@@ -42,6 +42,8 @@ function BootStrap(mainCb) {
                     return;
                   }
 
+                  userObj.groups = defaultGroups;
+                  
                   currUser = new User(userObj);
                   return currUser.saveAsync();
                   
