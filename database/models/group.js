@@ -7,10 +7,10 @@ var mongoose = require('mongoose'),
   validate = require('mongoose-validate');
 
 var schema = {
-	admin : {
+	admins : [{
 		type : Schema.ObjectId,
 		ref : 'User'
-	},
+	}],
 	users : [{
 		type : mongoose.Types.ObjectId,
 		ref : 'User'
@@ -21,7 +21,8 @@ var schema = {
 	},
 	name : {
 		type : String,
-		required : true
+		required : true,
+		unique : true
 	},
 	about : {
 		type : String

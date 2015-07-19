@@ -1,42 +1,46 @@
 var Promise = require('bluebird'),
   	mongoose = Promise.promisifyAll(require('mongoose')),
   	User = mongoose.model('User'),
+    Admin = mongoose.model('Admin'),
+    Group = mongoose.model('Group'),
   	async = require('async'),
-    users = require('bootstrap/users');
+    users = require('bootstrap/users'),
+    admins = require('bootstrap/admins'),
+    groups = require('bootstrap/groups'),
+    defaultGroup,
+    defaultAdmins = [];
 
-function bootstrapUsers() {
-
-  var currModel,
-      currUser;
-
-  async.series(users.map(function(userObj) {
-    return function(cb) {
-
-      currModel = mongoose.model(userObj.type);
-      currModel.findOne({'username' : userObj.username})
-               .execAsync()
-               .then(function(userfound) {
-                  
-                  if(userfound) {
-                    return;
-                  }
-
-                  currUser = new currModel(userObj);
-                  return currUser.saveAsync();
-                  
-               })
-               .finally(function() {
-                cb();
-               })
-
-    }
-  }),function(err,results) {
-    console.log('Default users now present in the database');
-  });
-}
 
 
 
 setTimeout(function() {
-  bootstrapUsers(); 
+  
+  var funcArray = [
+    {
+      execute : admins.bootstrap,
+      argument : defaultAdmins
+    },
+    {
+      execute : groups.bootstrap,
+      argument : defaultAdmins
+    },
+    {
+      execute : users.bootstrap,
+      argument : null
+    }
+  ];
+
+  async.series(funcArray.map(function(currFunc) {
+    
+    return function(cb) {
+      currFunc.execute.call({},cb,currFunc.argument);
+    }
+
+  }),function(err,results) {
+    
+    console.log('All users and default groups now added');
+  
+  });
+
+
 },5000);

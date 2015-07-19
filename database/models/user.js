@@ -51,7 +51,7 @@ var schema = {
 	},
 	created : {
 		type : Number,
-		default : Date.now()
+		default : new Date().getTime()
 	},
 	type : {
 		type : String,
