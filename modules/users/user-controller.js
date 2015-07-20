@@ -32,7 +32,16 @@ function One(request,reply) {
 }
 
 function Add(request,reply) {
-	reply.continue();
+	
+	var user = new User(request.payload);
+	
+	user.saveAsync()
+		.then(function() {
+			reply.continue();
+		})
+		.catch(function(e) {
+			reply.continue(e);
+		});
 }
 
 function Edit(request,reply) {

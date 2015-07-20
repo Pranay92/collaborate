@@ -43,7 +43,28 @@ function One(request,reply) {
 }
 
 function Add(request,reply) {
-	reply.continue();
+
+	var username = request.payload.username;
+	
+	User.findOne({'username' : username})
+		.execAsync()
+		.then(function(user) {
+
+			if(user) {
+
+				reply.continue('User with same username already exists.');
+				return;
+
+			}
+
+			reply.continue();
+
+		})
+		.catch(function(e) {
+
+			reply.continue(e);
+
+		});
 }
 
 function Edit(request,reply) {
@@ -86,7 +107,22 @@ function ValidateReqOne(request,reply) {
 function ValidateReqAdd() {
 
 	return {
-
+		'payload' : {
+			'name' : joi.object().keys({
+				'first' : joi.string().required(),
+				'last' : joi.string().required()
+			}),
+			'emails' : joi.array().items(joi.string().regex(pattern.email)),
+			'dob' : joi.object().keys({
+				'year' : joi.number().required(),
+				'month' : joi.number().required(),
+				'date' : joi.number().required()
+			}),
+			'groups' : joi.array().items(joi.string().regex(pattern.objectId)),
+			'password' : joi.string().required(),
+			'username' : joi.string().required(),
+			'created' : joi.number().required()
+		} 
 	};
 }
 
@@ -105,7 +141,7 @@ function ValidateReqDelete() {
 }
 
 function ValidateReqGet() {
-
+	
 	return {
 
 	};
