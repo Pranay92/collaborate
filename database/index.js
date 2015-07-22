@@ -5,9 +5,6 @@
 var mongoose = require('bluebird').promisifyAll(require('mongoose')),
     mongodbUri = require('mongodb-uri'),
     requireDirectory = require('require-directory'),
-    Promise = require('bluebird'),
-    mongoose = require('mongoose'),
-    async = require('async'),
     models = [],
     uri;
     
