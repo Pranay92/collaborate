@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
   bcrypt = require('bcryptjs'),
   util = require('util'),
+  Promise = require('bluebird'),
   Schema = mongoose.Schema,
   _ = require('lodash'),
   SALT_WORK_FACTOR = 10,
@@ -102,8 +103,7 @@ MongooseSchema.statics.LocalStrategy = function (username, password, done) {
   usernameRegExp = new RegExp(usernamePattern, 'i');
 
   this.findOne({
-    username: usernameRegExp,
-    active: true
+    username: usernameRegExp
   }, 'id password type name', function (err, person) {
 
     // Mongo general error running query
@@ -223,3 +223,4 @@ function PreSave(next) {
  */
 exports.Base = mongoose.model('User', MongooseSchema, 'users');
 exports.schema = schema;
+MongooseSchema.statics = Promise.promisifyAll(MongooseSchema.statics);
