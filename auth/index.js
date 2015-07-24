@@ -10,7 +10,6 @@ var validate = function (decodedToken, callback) {
     var error;
 
     client.hgetall(decodedToken.token,function(err,credentials) {
-        console.log(credentials);
 
         if (!credentials) {
             return callback(error, false, credentials);
