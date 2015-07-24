@@ -1,6 +1,7 @@
 var Promise = require('bluebird'),
     redis = require('redis'),
     client = Promise.promisifyAll(redis.createClient()),
+    jwt = require('jsonwebtoken'),
     privateKey = process.env.secret || 'BbZJjyoXAdr8BUZuiKKARWimKfrSmQ6fv8kZ7OFfc';
 
 
