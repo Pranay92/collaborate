@@ -1,22 +1,21 @@
-var Promise = require('bluebird'),
-  	boom = require('boom'),
-  	mongoose = Promise.promisifyAll(require('mongoose')),
-  	User = mongoose.model('User');
-  	jwt = require('jsonwebtoken'),
-    Promise = require('bluebird'),
-    redis = require('redis'),
-    client = Promise.promisifyAll(redis.createClient()),
-    privateKey = process.env.secret || 'BbZJjyoXAdr8BUZuiKKARWimKfrSmQ6fv8kZ7OFfc',
-    authUtils = require('utils/auth');
+var Series = require('hapi-next'),
+    Validator = require('modules/authorization/authorization-validator'),
+    Controller = require('modules/authorization/authorization-controller');
 
 module.exports = {
 	post : {
 		method : 'POST',
 		path : '/login',
 		config : {
+			validate : Validator.validateReqLogin(),
 			handler : function(request,reply) {
-				var token = authUtils.createToken({userId : 1, scope : 'admin'});
-				reply(token);
+
+				var series = new Series([
+					Validator.login,
+					Controller.login
+				]);
+				
+				series.execute(request,reply);
 			}
 		}
 	}
