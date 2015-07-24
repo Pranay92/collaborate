@@ -12,7 +12,7 @@ module.exports = {
 
 function createToken(userObj) {
   
-  var authObj = {'userId' : userObj.id, scope : userObj.scope},
+  var authObj = {'userId' : userObj.id, scope : userObj.scope.toLowerCase()},
      token1 = jwt.sign(authObj, privateKey),
      token2;
   
