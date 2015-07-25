@@ -1,15 +1,24 @@
 var Promise = require('bluebird'),
     redis = require('redis'),
-    client = Promise.promisifyAll(redis.createClient()),
+    client = Promise.promisifyAll(redis.createClient(process.env.REDIS_PORT,process.env.REDIS_HOST, {no_ready_check: true})),
     jwt = require('jsonwebtoken'),
     privateKey = process.env.secret || 'BbZJjyoXAdr8BUZuiKKARWimKfrSmQ6fv8kZ7OFfc';
 
-
 module.exports = {
   createToken : createToken,
-  clearToken : clearToken
+  clearToken : clearToken,
+  client : client
 };
 
+client.auth(process.env.REDIS_PASSWORD, function (err) {
+  if (err) {
+    console.log(err);    
+  } 
+});
+
+client.on('connect', function() {
+  console.log('Connected to Redis Server');
+});
 
 function createToken(userObj) {
   

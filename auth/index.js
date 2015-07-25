@@ -1,21 +1,21 @@
 var jwt = require('jsonwebtoken'),
     Promise = require('bluebird'),
     redis = require('redis'),
-    client = Promise.promisifyAll(redis.createClient()),
+    client = require('utils/auth').client,
     privateKey = process.env.secret || 'BbZJjyoXAdr8BUZuiKKARWimKfrSmQ6fv8kZ7OFfc',
     server = require('../app'); // find a way to include the main file by requiring lets-chat instead of ../app
 
+
+
 var validate = function (decodedToken, callback) {
 
-    var error;
+    client.HGETALL(decodedToken.token,function(err,credentials) {
 
-    client.hgetall(decodedToken.token,function(err,credentials) {
-
-        if (!credentials) {
-            return callback(error, false, credentials);
+        if (!credentials || err) {
+            return callback(err, false, credentials);
         }
 
-        return callback(error, true, credentials)
+        return callback(null, true, credentials)
     });
 
 };
@@ -34,3 +34,5 @@ function setup() {
 }
 
 setup();
+
+
