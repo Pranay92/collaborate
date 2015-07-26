@@ -32,6 +32,22 @@ function createToken(userObj) {
   return token2;
 }
 
-function clearToken() {
+function clearToken(token) {
+  
+  return new Promise(function(resolve, reject) {
+
+    jwt.verify(token,privateKey,function(err,decoded) {
+    
+      if(err) {
+        return;
+      }
+
+      client.del(decoded.coreToken);
+
+      resolve();
+
+    });
+
+  });
 
 }
