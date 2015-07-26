@@ -7,6 +7,7 @@ var Promise = require('bluebird'),
 module.exports = {
 
   login : Login,
+  logout : Logout,
 
   validateReqLogin : ValidateReqLogin
 
@@ -23,6 +24,17 @@ function Login(request,reply) {
     reply.continue();
   });
   
+}
+
+function Logout(request,reply) {
+  
+  if(!request.headers.authorization) {
+    reply.data = {'logout' : true};
+    return reply.continue();
+  }
+
+  reply.continue();
+
 }
 
 

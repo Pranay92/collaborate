@@ -53,6 +53,8 @@ function Delete(request,reply) {
 }
 
 function Get(request,reply) {
+	console.log(request.headers);
+	
 	User.find({})
 		.then(function(users) {
 			reply.data = users;

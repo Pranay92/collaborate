@@ -3,7 +3,8 @@ var Series = require('hapi-next'),
     Controller = require('modules/authorization/controller');
 
 module.exports = {
-	post : {
+	
+	login : {
 		method : 'POST',
 		path : '/login',
 		config : {
@@ -16,6 +17,19 @@ module.exports = {
 				]);
 				
 				series.execute(request,reply);
+			}
+		}
+	},
+
+	logout : {
+		method : '*',
+		path : '/logout',
+		config : {
+			auth : {
+				strategy : 'discard-token'
+			},
+			handler : function(request,reply) {
+				reply({'success' : true});
 			}
 		}
 	}

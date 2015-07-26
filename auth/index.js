@@ -20,8 +20,27 @@ var validate = function (decodedToken, callback) {
 
 };
 
+//TODO : this needs to make 'authorization' header as optional
+//       if the header does not sends a json token, the response is given as 401
+//       we need to simply return success if not authorization headers provided
+
+var invalidate = function(decodedToken,callback) {
+
+    client.EXISTS(decodedToken.token,function(err,credentials) {
+
+        if (!credentials || err) {
+            return callback(null,true,{});
+        }
+
+        client.del(decodedToken.token);
+        callback(null,true,{});
+
+    });
+};
+
 
 function setup() {
+
     server.register(require('hapi-auth-jwt'), function (error) {
 
         server.auth.strategy('token', 'jwt', {
@@ -31,6 +50,13 @@ function setup() {
 
         console.log('Authorization strategy implemented');
     });
+
+
+    server.auth.strategy('discard-token', 'jwt', {
+        key: privateKey,
+        validateFunc: invalidate
+    });
+
 }
 
 setup();
