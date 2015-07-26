@@ -1,12 +1,12 @@
 var boom = require('boom'),
-  	Controller = require('modules/users/user-controller'),
-  	Validator = require('modules/users/user-validator'),
+  	Controller = require('modules/groups/controller'),
+  	Validator = require('modules/groups/validator'),
   	Series = require('hapi-next');
 
 module.exports = {
 	one : {
 		method : 'GET',
-		path : '/users/{id}',
+		path : '/groups/{id}',
 		config : {
 			auth : {
 				strategy : 'token',
@@ -27,7 +27,7 @@ module.exports = {
 	},
 	get : {
 		method : 'GET',
-		path : '/users',
+		path : '/groups',
 		config : {
 			auth : {
 				strategy : 'token',
@@ -49,7 +49,7 @@ module.exports = {
 	},
 	add : {
 		method : 'POST',
-		path : '/users',
+		path : '/groups',
 		config : {
 			auth : {
 				strategy : 'token',

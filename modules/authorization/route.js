@@ -1,6 +1,6 @@
 var Series = require('hapi-next'),
-    Validator = require('modules/authorization/authorization-validator'),
-    Controller = require('modules/authorization/authorization-controller');
+    Validator = require('modules/authorization/validator'),
+    Controller = require('modules/authorization/controller');
 
 module.exports = {
 	post : {
