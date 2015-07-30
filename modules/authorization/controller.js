@@ -10,7 +10,7 @@ module.exports = {
 function Login(request,reply) {
 
 	var user = reply.data,
-		token = authUtils.createToken({'id' : user._id, 'scope' : user.type});
+		token = authUtils.createToken({'id' : user.id, 'scope' : user.type});
 
 	reply.data = token;
 	reply.continue();
