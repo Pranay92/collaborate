@@ -49,7 +49,14 @@ function Edit(request,reply) {
 }
 
 function Delete(request,reply) {
-	reply.continue();
+
+	Group.findByIdAndRemoveAsync(request.params.id)
+		 .then(function(response) {
+		 	reply.continue();
+		 })
+		 .catch(function(e) {
+		 	reply.continue(e);
+		 });
 }
 
 function Get(request,reply) {

@@ -68,4 +68,25 @@ module.exports = {
 			}
 		}
 	},
+	delete : {
+		method : 'DELETE',
+		path : '/groups/{id}',
+		config : {
+			auth : {
+				strategy : 'token',
+				scope : ['admin']
+			},
+			validate : Validator.validateReqDelete(),
+			handler : function(request,reply) {
+
+				var funcArray = [
+					Validator.delete,
+					Controller.delete
+				];
+
+				var series = new Series(funcArray);
+				series.execute(request,reply);
+			}
+		}	
+	}
 }

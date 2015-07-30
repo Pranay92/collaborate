@@ -1,94 +1,114 @@
 var Promise = require('bluebird'),
-	mongoose = Promise.promisifyAll(require('mongoose')),
-	Group = mongoose.model('Group'),
-	joi = require('joi'),
-	pattern = require('utils/pattern');
+    mongoose = Promise.promisifyAll(require('mongoose')),
+    Group = mongoose.model('Group'),
+    joi = require('joi'),
+    pattern = require('utils/pattern');
 
 module.exports = {
 
-	one : One,
-	add : Add,
-	edit : Edit,
-	delete : Delete,
-	get : Get,
-	bulkAdd : BulkAdd,
-	bulkEdit : BulkEdit,
-	bulkDelete : BulkDelete,
+  one : One,
+  add : Add,
+  edit : Edit,
+  delete : Delete,
+  get : Get,
+  bulkAdd : BulkAdd,
+  bulkEdit : BulkEdit,
+  bulkDelete : BulkDelete,
 
-	validateReqOne 	: ValidateReqOne,
-	validateReqAdd 	: ValidateReqAdd,
-	validateReqEdit : ValidateReqEdit,
-	validateReqDelete : ValidateReqDelete,
-	validateReqGet : ValidateReqGet,
-	validateReqBulkAdd : ValidateReqBulkAdd,
-	validateReqBulkEdit : ValidateReqBulkEdit,
-	validateReqBulkDelete : ValidateReqBulkDelete,
+  validateReqOne  : ValidateReqOne,
+  validateReqAdd  : ValidateReqAdd,
+  validateReqEdit : ValidateReqEdit,
+  validateReqDelete : ValidateReqDelete,
+  validateReqGet : ValidateReqGet,
+  validateReqBulkAdd : ValidateReqBulkAdd,
+  validateReqBulkEdit : ValidateReqBulkEdit,
+  validateReqBulkDelete : ValidateReqBulkDelete,
 
 };
 
 function One(request,reply) {
-	Group.findByIdAsync(request.params.id)
-		.then(function(groupExist){
-			
-			if(!groupExist) {
-				return reply.continue('Group not found');
-			}
+  Group.findByIdAsync(request.params.id)
+    .then(function(groupExist){
+      
+      if(!groupExist) {
+        return reply.continue('Group not found');
+      }
 
-			reply.data = groupExist;
-			reply.continue();
-		})
-		.catch(function(e) {
-			reply.continue(e);
-		})
+      reply.data = groupExist;
+      reply.continue();
+    })
+    .catch(function(e) {
+      reply.continue(e);
+    })
 }
 
 function Add(request,reply) {
 
-	var name = request.payload.name;
-	
-	Group.findOne({'name' : name})
-		.execAsync()
-		.then(function(group) {
+  var name = request.payload.name;
+  
+  Group.findOne({'name' : name})
+    .execAsync()
+    .then(function(group) {
 
-			if(group) {
+      if(group) {
 
-				reply.continue('Group with same group name already exists.');
-				return;
+        reply.continue('Group with same group name already exists.');
+        return;
 
-			}
+      }
 
-			reply.continue();
+      reply.continue();
 
-		})
-		.catch(function(e) {
+    })
+    .catch(function(e) {
 
-			reply.continue(e);
+      reply.continue(e);
 
-		});
+    });
 }
 
 function Edit(request,reply) {
-	reply.continue();
+  reply.continue();
 }
 
 function Delete(request,reply) {
-	reply.continue();
+  
+  Group.findByIdAsync(request.params.id)
+       .then(function(response) {
+          
+          if(!response) {
+            reply.continue();
+            return;
+          }
+
+          console.log(request.auth.credentials,response.admins)
+          if(response.admins.indexOf(request.auth.credentials.id) < 0) {
+            reply.continue('Not Authorized to delete this group');
+            return;
+          }
+
+          reply.continue();
+
+       })
+       .catch(function(e) {
+          reply.continue(e);
+       });
 }
 
 function Get(request,reply) {
-	reply.continue();
+  reply.continue();
 }
 
 function BulkAdd(request,reply) {
-	reply.continue();
+  reply.continue();
 }
 
 function BulkEdit(request,reply) {
-	reply.continue();
+  reply.continue();
 }
 
 function BulkDelete(request,reply) {
-	reply.continue();
+  reply.continue();
 }
 
 
@@ -96,59 +116,61 @@ function BulkDelete(request,reply) {
 
 function ValidateReqOne(request,reply) {
 
-	return {
-		params : {
-			id : joi.string().regex(pattern.objectId)
-		}
-	};
+  return {
+    params : {
+      id : joi.string().regex(pattern.objectId)
+    }
+  };
 
 }
 
 function ValidateReqAdd() {
 
-	return {
-		
-	};
+  return {
+    
+  };
 }
 
 function ValidateReqEdit() {
 
-	return {
+  return {
 
-	};
+  };
 }
 
 function ValidateReqDelete() {
 
-	return {
-
-	};
+  return {
+    params : {
+      id : joi.string().regex(pattern.objectId)
+    }
+  };
 }
 
 function ValidateReqGet() {
-	
-	return {
+  
+  return {
 
-	};
+  };
 }
 
 function ValidateReqBulkAdd() {
 
-	return {
+  return {
 
-	};
+  };
 }
 
 function ValidateReqBulkEdit() {
 
-	return {
+  return {
 
-	};
+  };
 }
 
 function ValidateReqBulkDelete() {
 
-	return {
+  return {
 
-	};
+  };
 }
