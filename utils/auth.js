@@ -22,7 +22,7 @@ client.on('connect', function() {
 
 function createToken(userObj) {
   
-  var authObj = {'userId' : userObj.id, scope : userObj.scope.toLowerCase()},
+  var authObj = {'id' : userObj.id, scope : userObj.scope.toLowerCase()},
      token1 = jwt.sign(authObj, privateKey),
      token2;
   
