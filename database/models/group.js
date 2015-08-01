@@ -28,8 +28,12 @@ var schema = {
 		type : String
 	},
 	created : {
-		type : Date,
-		default : Date.now()
+		type : Number,
+		default : new Date().getTime()
+	},
+	updated : {
+		type : Number,
+		default  :new Date().getTime()
 	}
 };
 

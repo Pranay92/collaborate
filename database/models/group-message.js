@@ -15,8 +15,8 @@ var schema = {
 		ref : 'Group'
 	},
 	created : {
-		type : Date,
-		default : Date.now()
+		type : Number,
+		default : new Date().getTime()
 	}
 };
 
