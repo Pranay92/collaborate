@@ -17,7 +17,8 @@ var schema = {
 	}],
 	creator : {
 		type : Schema.ObjectId,
-		ref : 'User'
+		ref : 'User',
+		required : true
 	},
 	private : {
 		type : Boolean,
@@ -29,7 +30,8 @@ var schema = {
 		unique : true
 	},
 	about : {
-		type : String
+		type : String,
+		required : true
 	},
 	created : {
 		type : Number,
