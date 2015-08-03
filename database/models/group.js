@@ -19,6 +19,10 @@ var schema = {
 		type : Schema.ObjectId,
 		ref : 'User'
 	},
+	private : {
+		type : Boolean,
+		default : false
+	},
 	name : {
 		type : String,
 		required : true,
