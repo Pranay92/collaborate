@@ -12,8 +12,7 @@ collection = [
   {
     users : [],
     name : 'Basic Group',
-    about : 'This is a basic group created on server startup.',
-    created : (new Date()).getTime()
+    about : 'This is a basic group created on server startup.'
   }
 ];
 
@@ -34,6 +33,7 @@ function BootStrap(mainCb,defaultAdmins,defaultGroups) {
                   }
 
                   grpObj.admins = defaultAdmins;
+                  grpObj.creator = defaultAdmins[0];
                   currGroup = new Group(grpObj);
                   return currGroup.saveAsync();
                   
