@@ -42,3 +42,6 @@ This software is licensed under the MIT license specifications.
 4. Run `redis-server &` to run redis server in the background.
 5. Run the application using ````node app.js````
 
+
+**Note** This is server only, client will be created on a separate repo.
+
