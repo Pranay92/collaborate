@@ -18,16 +18,16 @@ module.exports = {
 function One(request,reply) {
 	
 	if(reply.data && reply.data._id) {
-		return reply.continue();
+		return reply.next();
 	}
 
 	User.findByIdAsyc(request.params.id)
 		.then(function(userExist){
 			reply.data = userExist;
-			reply.continue();
+			reply.next();
 		})
 		.catch(function(e) {
-			reply.continue(e);
+			reply.next(e);
 		});
 }
 
@@ -37,19 +37,19 @@ function Add(request,reply) {
 	
 	user.saveAsync()
 		.then(function() {
-			reply.continue();
+			reply.next();
 		})
 		.catch(function(e) {
-			reply.continue(e);
+			reply.next(e);
 		});
 }
 
 function Edit(request,reply) {
-	reply.continue();
+	reply.next();
 }
 
 function Delete(request,reply) {
-	reply.continue();
+	reply.next();
 }
 
 function Get(request,reply) {
@@ -58,21 +58,21 @@ function Get(request,reply) {
 	User.find({})
 		.then(function(users) {
 			reply.data = users;
-			reply.continue();
+			reply.next();
 		})
 		.catch(function(e) {
-			reply.continue({'msg' : 'Cannot fetch users','error' : e});
+			reply.next({'msg' : 'Cannot fetch users','error' : e});
 		});
 }
 
 function BulkAdd(request,reply) {
-	reply.continue();
+	reply.next();
 }
 
 function BulkEdit(request,reply) {
-	reply.continue();
+	reply.next();
 }
 
 function BulkDelete(request,reply) {
-	reply.continue();
+	reply.next();
 }

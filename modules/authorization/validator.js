@@ -18,10 +18,10 @@ function Login(request,reply) {
   User.LocalStrategy(request.payload.username,request.payload.password,function(err,user) {
     if(err) {
       console.log(err);
-      return reply.continue(err);
+      return reply.next(err);
     }
     reply.data = user;
-    reply.continue();
+    reply.next();
   });
   
 }
@@ -30,10 +30,10 @@ function Logout(request,reply) {
   
   if(!request.headers.authorization) {
     reply.data = {'logout' : true};
-    return reply.continue();
+    return reply.next();
   }
 
-  reply.continue();
+  reply.next();
 
 }
 

@@ -18,16 +18,16 @@ module.exports = {
 function One(request,reply) {
 	
 	if(reply.data && reply.data._id) {
-		return reply.continue();
+		return reply.next();
 	}
 
 	Group.findByIdAsyc(request.params.id)
 		.then(function(groupExist){
 			reply.data = groupExist;
-			reply.continue();
+			reply.next();
 		})
 		.catch(function(e) {
-			reply.continue(e);
+			reply.next(e);
 		});
 }
 
@@ -37,25 +37,25 @@ function Add(request,reply) {
 	
 	group.saveAsync()
 		.then(function() {
-			reply.continue();
+			reply.next();
 		})
 		.catch(function(e) {
-			reply.continue(e);
+			reply.next(e);
 		});
 }
 
 function Edit(request,reply) {
-	reply.continue();
+	reply.next();
 }
 
 function Delete(request,reply) {
 
 	Group.findByIdAndRemoveAsync(request.params.id)
 		 .then(function(response) {
-		 	reply.continue();
+		 	reply.next();
 		 })
 		 .catch(function(e) {
-		 	reply.continue(e);
+		 	reply.next(e);
 		 });
 }
 
@@ -63,21 +63,21 @@ function Get(request,reply) {
 	Group.find({})
 		.then(function(groups) {
 			reply.data = groups;
-			reply.continue();
+			reply.next();
 		})
 		.catch(function(e) {
-			reply.continue({'msg' : 'Cannot fetch groups','error' : e});
+			reply.next({'msg' : 'Cannot fetch groups','error' : e});
 		});
 }
 
 function BulkAdd(request,reply) {
-	reply.continue();
+	reply.next();
 }
 
 function BulkEdit(request,reply) {
-	reply.continue();
+	reply.next();
 }
 
 function BulkDelete(request,reply) {
-	reply.continue();
+	reply.next();
 }

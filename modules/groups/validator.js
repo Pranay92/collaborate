@@ -31,14 +31,14 @@ function One(request,reply) {
     .then(function(groupExist){
       
       if(!groupExist) {
-        return reply.continue('Group not found');
+        return reply.next('Group not found');
       }
 
       reply.data = groupExist;
-      reply.continue();
+      reply.next();
     })
     .catch(function(e) {
-      reply.continue(e);
+      reply.next(e);
     })
 }
 
@@ -52,23 +52,23 @@ function Add(request,reply) {
 
       if(group) {
 
-        reply.continue('Group with same group name already exists.');
+        reply.next('Group with same group name already exists.');
         return;
 
       }
 
-      reply.continue();
+      reply.next();
 
     })
     .catch(function(e) {
 
-      reply.continue(e);
+      reply.next(e);
 
     });
 }
 
 function Edit(request,reply) {
-  reply.continue();
+  reply.next();
 }
 
 function Delete(request,reply) {
@@ -77,38 +77,38 @@ function Delete(request,reply) {
        .then(function(response) {
           
           if(!response) {
-            reply.continue();
+            reply.next();
             return;
           }
 
           console.log(request.auth.credentials,response.admins)
           if(response.admins.indexOf(request.auth.credentials.id) < 0) {
-            reply.continue('Not Authorized to delete this group');
+            reply.next('Not Authorized to delete this group');
             return;
           }
 
-          reply.continue();
+          reply.next();
 
        })
        .catch(function(e) {
-          reply.continue(e);
+          reply.next(e);
        });
 }
 
 function Get(request,reply) {
-  reply.continue();
+  reply.next();
 }
 
 function BulkAdd(request,reply) {
-  reply.continue();
+  reply.next();
 }
 
 function BulkEdit(request,reply) {
-  reply.continue();
+  reply.next();
 }
 
 function BulkDelete(request,reply) {
-  reply.continue();
+  reply.next();
 }
 
 

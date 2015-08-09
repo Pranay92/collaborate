@@ -13,6 +13,6 @@ function Login(request,reply) {
 		token = authUtils.createToken({'id' : user.id, 'scope' : user.type});
 
 	reply.data = token;
-	reply.continue();
+	reply.next();
 
 }
