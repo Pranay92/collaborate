@@ -45,3 +45,7 @@ This software is licensed under the MIT license specifications.
 
 **Note** This is server only, client will be created on a separate repo.
 
+## Contributors
+
+1. [Pranay Dubey](https://github.com/Pranay92)
+2. [Shamsher Ansari](https://github.com/Shamsher31)
