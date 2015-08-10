@@ -81,6 +81,7 @@ module.exports = {
 
 				var funcArray = [
 					Validator.delete,
+					Controller.removeUsers,
 					Controller.delete
 				];
 
