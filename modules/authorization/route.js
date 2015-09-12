@@ -22,15 +22,18 @@ module.exports = {
 	},
 
 	logout : {
-		method : '*',
+		method : 'POST',
 		path : '/logout',
 		config : {
-			auth : {
-				strategy : 'discard-token'
-			},
 			handler : function(request,reply) {
-				reply({'success' : true});
+
+				var series = new Series([
+					Controller.logout
+				]);
+				
+				series.execute(request,reply);	
 			}
 		}
 	}
+	
 }

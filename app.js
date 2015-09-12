@@ -10,6 +10,8 @@ require('database');
 
 require('modules');
 
+require('utils/auth').initialize();
+
 require('auth');
 
 require('bootstrap');

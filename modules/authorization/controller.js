@@ -4,7 +4,8 @@ var Promise = require('bluebird'),
     authUtils = require('utils/auth');
 
 module.exports = {
-	login : Login
+	login : Login,
+  logout : Logout
 };
 
 function Login(request,reply) {
@@ -14,5 +15,17 @@ function Login(request,reply) {
 
 	reply.data = token;
 	reply.next();
+
+}
+
+function Logout(request,reply) {
+
+  authUtils.clearToken(request.payload.token)
+           .then(function() {
+            reply.next();          
+           })
+           .catch(function(e) {
+            reply.next(e);
+           });
 
 }
