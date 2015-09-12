@@ -54,6 +54,7 @@ function BootStrap(mainCb,defaultAdmins) {
                .then(function(userfound) {
                   
                   if(userfound) {
+                    defaultAdmins.push(userfound._id);
                     return;
                   }
 
