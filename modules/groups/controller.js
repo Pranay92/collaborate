@@ -32,6 +32,7 @@ function One(request,reply) {
     .catch(function(e) {
       reply.next(e);
     });
+
 }
 
 function Add(request,reply) {
@@ -45,6 +46,7 @@ function Add(request,reply) {
     .catch(function(e) {
       reply.next(e);
     });
+
 }
 
 function Edit(request,reply) {
@@ -63,6 +65,7 @@ function Delete(request,reply) {
 }
 
 function Get(request,reply) {
+
   Group.find({})
     .then(function(groups) {
       reply.data = groups;
@@ -71,6 +74,7 @@ function Get(request,reply) {
     .catch(function(e) {
       reply.next({'msg' : 'Cannot fetch groups','error' : e});
     });
+
 }
 
 function BulkAdd(request,reply) {
@@ -86,6 +90,7 @@ function BulkDelete(request,reply) {
 }
 
 function RemoveUsers(request,reply) {
+
   User.update({},{'$pull' : {'groups' : request.params.id} },{'multi' : true})
     .execAsync()
     .then(function(){
@@ -94,4 +99,5 @@ function RemoveUsers(request,reply) {
     .catch(function(e) {
       reply.next(e);
     });
+
 }

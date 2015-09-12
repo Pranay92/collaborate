@@ -53,6 +53,7 @@ function Delete(request,reply) {
 }
 
 function Get(request,reply) {
+
 	console.log(request.headers);
 	
 	User.find({})
@@ -63,6 +64,7 @@ function Get(request,reply) {
 		.catch(function(e) {
 			reply.next({'msg' : 'Cannot fetch users','error' : e});
 		});
+		
 }
 
 function BulkAdd(request,reply) {

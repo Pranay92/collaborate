@@ -37,7 +37,6 @@ function Logout(request,reply) {
 
 }
 
-
 function ValidateReqLogin() {
   
   return {
