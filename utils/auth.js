@@ -7,23 +7,8 @@ var Promise = require('bluebird'),
 module.exports = {
   createToken : createToken,
   clearToken : clearToken,
-  client : client,
-  initialize : Initialize
+  client : client
 };
-
-function Initialize() {
-  
-  client.auth(process.env.REDIS_PASSWORD, function (err) {
-    if (err) {
-      console.log(err);    
-    } 
-  });
-
-  client.on('connect', function() {
-    console.log('Connected to Redis Server');
-  }); 
-}
-
 
 function createToken(userObj) {
   
@@ -44,7 +29,7 @@ function clearToken(token) {
     jwt.verify(token,privateKey,function(err,decoded) {
     
       if(!err) {
-        client.del(decoded.coreToken);
+        client.del(decoded.token);
       }
 
       resolve();
