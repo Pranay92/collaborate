@@ -2,7 +2,8 @@ var Promise = require('bluebird'),
 	mongoose = Promise.promisifyAll(require('mongoose')),
 	User = mongoose.model('User'),
 	joi = require('joi'),
-	pattern = require('utils/pattern');
+	pattern = require('utils/pattern'),
+	UserUtils = require('utils/users');
 
 module.exports = {
 
@@ -27,19 +28,15 @@ module.exports = {
 };
 
 function One(request,reply) {
-	User.findByIdAsync(request.params.id)
-		.then(function(userExist){
-			
-			if(!userExist) {
-				return reply.next('User not found');
-			}
 
+	UserUtils.exists(request.params.id)
+		.then(function(userExist){
 			reply.data = userExist;
 			reply.next();
 		})
 		.catch(function(e) {
 			reply.next(e);
-		})
+		});
 }
 
 function Add(request,reply) {
