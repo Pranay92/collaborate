@@ -1,7 +1,7 @@
 lets-chat
 =========
 
-A full fledged web application that will allow people to communicate with each other on web.
+A well organised, structured and thought over server for chat application built using hapijs
 
 # Why
 
