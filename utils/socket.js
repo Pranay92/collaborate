@@ -1,9 +1,75 @@
+var async = require('async');
 
 module.exports = {
-	initialize : Initialize
+  initialize : Initialize
 };
 
 
-function Initialize(chatServer) {
+function Initialize(socket) {
+  
+  var listeners = Listeners();
+
+  async.series(listeners.map(function(listObj) {
+    return function(cb) {
+      socket.on(listObj.event,listObj.handler);
+      cb();
+    }
+  }),function(err,results) {
+    console.log('Added listeners for new connection');
+  }); 
+  
+};
+
+
+function Listeners() {
+
+  var listeners = [
+          {
+            'event'   : 'message',
+            'handler' : OnMessage
+          },
+          {
+            'event'   : 'group-message',
+            'handler' : GroupMessage
+          },
+          {
+            'event'   : 'group-add',
+            'handler' : GroupAdd
+
+          },{
+            'event'   : 'group-remove',
+            'handler' : GroupRemove
+          },
+          {
+            'event'   : 'group-create',
+            'handler' : GroupCreate
+          }
+        ];
+
+  return listeners;
 
 };
+
+function OnMessage(server) {
+
+};
+
+function GroupMessage(server) {
+
+};
+
+function GroupAdd(server) {
+
+};
+
+function GroupRemove(server) {
+
+};
+
+function GroupCreate(server) {
+
+};
+ 
+
+
+

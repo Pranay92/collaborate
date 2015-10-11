@@ -4,7 +4,9 @@ var listener = require('../../app').select('chat').listener,
 
 
 function setup() {
-    socketUtils.initialize(io);
+    io.on('connection',function(socket) {
+      socketUtils.initialize(io);
+    });
 }
 
 setup();
