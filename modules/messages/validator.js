@@ -50,7 +50,7 @@ function ValidateOwners(request,reply) {
       from = request.params.from,
       to = request.params.to;
 
-  if(userId == from) {
+  if(userId == from || userId == to) {
     reply.next();
     return;
   }
