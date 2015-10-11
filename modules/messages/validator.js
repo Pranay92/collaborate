@@ -6,14 +6,18 @@ var Promise = require('bluebird'),
     GroupMessage = mongoose.model('GroupMessage');
 
 module.exports = {
+  
   one : One,
-  get : Get
+  get : Get,
+
+  validateOwners : ValidateOwners
+
 };
 
 function One(request,reply) {
 
   var msgId = request.params.id,
-      userId = request.auth.credentials;
+      user = request.auth.credentials;
 
   MessageUtils.exists(msgId,user)
               .then(function(msg){
@@ -37,4 +41,20 @@ function Get(request,reply) {
            .catch(function(e){
             reply.next(e);
            });
+}
+
+
+function ValidateOwners(request,reply) {
+  
+  var userId = request.auth.credentials.id,
+      from = request.params.from,
+      to = request.params.to;
+
+  if(userId == from) {
+    reply.next();
+    return;
+  }
+
+  reply.next('Not authorized to view messages');
+
 }

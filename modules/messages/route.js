@@ -37,6 +37,7 @@ module.exports = {
 
         var funcArray = [
           Validator.get,
+          Validator.validateOwners,
           Controller.get
         ];
 
@@ -44,6 +45,6 @@ module.exports = {
         series.execute(request,reply);
       }
     }
-  },
+  }
 
 };
