@@ -22,7 +22,7 @@ Because we have lots of paid applications out there that allow you to chat using
 4. Browserify to load all the dependencies and bundling and minification.
 5. Gulp for the build tasks.
 6. Protractor for the e2e tests. 
-7. Mocha for the express tests.
+7. Mocha for the server tests.
 8. Ionic Framework for mobile app.
 9. Server monitoring and logs - PM2.
 10. Server side session storage - Redis.
