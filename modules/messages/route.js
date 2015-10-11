@@ -26,4 +26,24 @@ module.exports = {
     }
   },
 
+  get : {
+    method : 'GET',
+    path : '/messages',
+    config : {
+      auth : {
+        strategy : 'token'
+      },
+      handler : function(request,reply) {
+
+        var funcArray = [
+          Validator.get,
+          Controller.get
+        ];
+
+        var series = new Series(funcArray);
+        series.execute(request,reply);
+      }
+    }
+  },
+
 };
