@@ -26,7 +26,7 @@ function Listeners() {
   var listeners = [
           {
             'event'   : 'message',
-            'handler' : OnMessage
+            'handler' : Message
           },
           {
             'event'   : 'group-message',
@@ -50,7 +50,7 @@ function Listeners() {
 
 };
 
-function OnMessage(server) {
+function Message(server) {
 
 };
 
