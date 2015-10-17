@@ -1,4 +1,4 @@
-Colloborate
+Collaborate
 =========
 
 A well organised, structured and thought over server for chat application built using hapijs
