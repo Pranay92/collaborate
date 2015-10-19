@@ -25,6 +25,27 @@ module.exports = {
 			}
 		}
 	},
+	edit : {
+		method : 'PUT',
+		path : '/groups/{id}',
+		config : {
+			auth : {
+				strategy : 'token',
+				scope : ['admin','user']
+			},
+			validate : Validator.validateReqOne(),
+			handler : function(request,reply) {
+
+				var funcArray = [
+					Validator.edit,
+					Controller.edit
+				];
+
+				var series = new Series(funcArray);
+				series.execute(request,reply);
+			}
+		}
+	},
 	get : {
 		method : 'GET',
 		path : '/groups',

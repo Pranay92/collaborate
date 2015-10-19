@@ -27,11 +27,20 @@ module.exports = {
 };
 
 function One(request,reply) {
-  Group.findByIdAsync(request.params.id)
+
+  var userId = request.auth.credentials.id;
+
+  Group.find(request.params.id)
     .then(function(groupExist){
       
       if(!groupExist) {
-        return reply.next('Group not found');
+        reply.next('Group not found');
+        return;
+      }
+
+      if(group.users.indexOf(userId) < 0) {
+        reply.next('Not authorized to view this group'); 
+        return;
       }
 
       reply.data = groupExist;
@@ -68,7 +77,26 @@ function Add(request,reply) {
 }
 
 function Edit(request,reply) {
-  reply.next();
+  
+  var userId = request.auth.credentials.id;
+
+  Group.findOne({'admins' : {'$in' : [userId]}, '_id' : mongoose.Types.ObjectId(request.params.id) })
+       .execAsync()
+       .then(function(groupExist) {
+          
+          if(!groupExist) {
+            reply.next('Group not found');
+            return;
+          }
+
+          reply.data = groupExist;
+          reply.next();
+
+       })
+       .catch(function(e) {
+          reply.next(e);      
+       });
+  
 }
 
 function Delete(request,reply) {
