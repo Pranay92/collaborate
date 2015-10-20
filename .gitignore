@@ -2,3 +2,4 @@
 .env
 dump.rdb
 node_modules
+npm-debug.log
