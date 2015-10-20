@@ -15,5 +15,5 @@ require('modules');
 require('bootstrap');
 
 server.start(function() {
-	console.log('Server listennig on port ' + server.info.uri);
+	console.log('Server is up and running');
 })
