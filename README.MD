@@ -16,17 +16,12 @@ Because we have lots of paid applications out there that allow you to chat using
 
 # Technology Stack (Initial Proposal)
 
-1. Angular for the front-end, Material Design for the awesome UI.
-2. Hapi.js as a node.js framework.
-3. MongoDB for the database(using Mongoose)
-4. Browserify to load all the dependencies and bundling and minification.
-5. Gulp for the build tasks.
-6. Protractor for the e2e tests. 
-7. Mocha for the server tests.
-8. Ionic Framework for mobile app.
-9. Server monitoring and logs - PM2.
-10. Server side session storage - Redis.
-11. Messaging queue - RabbitMQ.
+1. Hapi.js as a node.js framework.
+2. MongoDB for the database(using Mongoose)
+3. Mocha for the server tests.
+4. Server monitoring and logs - PM2.
+5. Server side session storage - Redis.
+6. Messaging queue - RabbitMQ.
 
 # [Wiki](https://github.com/Pranay92/lets-chat/wiki)
 
