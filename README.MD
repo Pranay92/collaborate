@@ -9,19 +9,18 @@ Because we have lots of paid applications out there that allow you to chat using
 
 # Advantages
 
-1. You don't have to pay for chat apps.
-2. You can fork and play around and add new features to it instead of making a feature request while using a paid app.
-3. It provides a lot of insights as to how to deal with lots of traffic when using node and how to scale it.
-4. Chat wherever you are with hybrid mobile app build using Ionic framework.
+1. You control your own chat server.
+2. Get experienced in handling complex real life scenarios and know how to scale them.
 
-# Technology Stack (Initial Proposal)
 
-1. Hapi.js as a node.js framework.
-2. MongoDB for the database(using Mongoose)
-3. Mocha for the server tests.
-4. Server monitoring and logs - PM2.
-5. Server side session storage - Redis.
-6. Messaging queue - RabbitMQ.
+# Technology Stack (keeps getting updated)
+
+1. Node server. - Hapi
+2. MongoDB for the database. - Mongoose
+3. Server unit tests. - Mocha
+4. Server monitoring and logs. - PM2
+5. Server side session storage. - Redis
+6. Messaging queue - RabbitMQ
 
 # [Wiki](https://github.com/Pranay92/lets-chat/wiki)
 
