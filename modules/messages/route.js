@@ -13,6 +13,7 @@ module.exports = {
         strategy : 'token',
         scope : ['admin','user']
       },
+      validate : Validator.validateReqOne(),
       handler : function(request,reply) {
 
         var funcArray = [
@@ -33,6 +34,7 @@ module.exports = {
       auth : {
         strategy : 'token'
       },
+      validate : Validator.validateReqGet(),
       handler : function(request,reply) {
 
         var funcArray = [
@@ -43,6 +45,28 @@ module.exports = {
 
         var series = new Series(funcArray);
         series.execute(request,reply);
+      }
+    }
+  },
+
+  add : {
+    method : 'POST',
+    path : '/messages',
+    config : {
+      auth : {
+        strategy : 'token'
+      },
+      validate : Validator.validateReqAdd(),
+      handler : function(request,reply) {
+
+        var funcArray = [
+          Validator.add,
+          Controller.add
+        ];
+
+        var series = new Series(funcArray);
+        series.execute(request,reply);
+        
       }
     }
   }

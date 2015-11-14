@@ -3,14 +3,21 @@ var Promise = require('bluebird'),
     Message = mongoose.model('Message'),
     UserUtils = require('utils/users'),
     MessageUtils = require('utils/messages'),
-    GroupMessage = mongoose.model('GroupMessage');
+    GroupMessage = mongoose.model('GroupMessage'),
+    joi = require('joi'),
+    pattern = require('utils/pattern');
 
 module.exports = {
   
   one : One,
   get : Get,
+  add : Add,
 
-  validateOwners : ValidateOwners
+  validateOwners : ValidateOwners,
+
+  validateReqOne : ValidateReqOne,
+  validateReqGet : ValidateReqGet,
+  validateReqAdd : ValidateReqAdd
 
 };
 
@@ -43,6 +50,46 @@ function Get(request,reply) {
            });
 }
 
+function Add(request,reply) {
+
+  UserUtils.exists(request.params.from)
+          .then(function() {
+            return UserUtils.exists(request.params.to);
+          })
+          .then(function() {
+            reply.next();
+          })
+          .catch(function(e) {
+            reply.next(e);
+          });
+
+}
+
+function ValidateReqOne(request,reply) {
+
+  return {
+    params : {
+      id : joi.string().regex(pattern.objectId)
+    }
+  };
+
+}
+
+function ValidateReqGet(request,reply) {
+
+}
+
+function ValidateReqAdd(request,reply) {
+  
+  return {
+    payload : {
+      from : joi.string().regex(pattern.objectId),
+      to : joi.string().regex(pattern.objectId),
+      content : joi.string(),
+      created : joi.number()
+    }
+  };
+}
 
 function ValidateOwners(request,reply) {
   

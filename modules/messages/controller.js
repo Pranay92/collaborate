@@ -5,7 +5,8 @@ var Promise = require('bluebird'),
 
 module.exports = {
   one : One,
-  get : Get
+  get : Get,
+  add : Add
 };
 
 function One(request,reply) {
@@ -46,4 +47,10 @@ function Get(request,reply) {
          .catch(function(e) {
             reply.next(e);
          });
+}
+
+function Add(request,reply) {
+
+  //TODO: Add socket and DB logic here
+  reply.next();
 }
