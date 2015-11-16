@@ -38,10 +38,10 @@ function One(request,reply) {
 
 function Get(request,reply) {
 
-  UserUtils.exists(request.params.from)
-           .then(function(){
-              return UserUtils.exists(request.params.to);
-           })
+  Promise.all([
+            UserUtils.exists(request.params.from),
+            UserUtils.exists(request.params.to)
+           ])
            .then(function(){
               reply.next();
            })
@@ -52,10 +52,10 @@ function Get(request,reply) {
 
 function Add(request,reply) {
 
-  UserUtils.exists(request.params.from)
-          .then(function() {
-            return UserUtils.exists(request.params.to);
-          })
+  Promise.all([
+            UserUtils.exists(request.body.from),
+            UserUtils.exists(request.body.to)
+           ])
           .then(function() {
             reply.next();
           })
@@ -76,7 +76,13 @@ function ValidateReqOne(request,reply) {
 }
 
 function ValidateReqGet(request,reply) {
-
+  
+  return {
+    params : {
+      from : joi.string().regex(pattern.objectId),
+      to : joi.string().regex(pattern.objectId)
+    }
+  };
 }
 
 function ValidateReqAdd(request,reply) {
