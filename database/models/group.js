@@ -7,40 +7,40 @@ var mongoose = require('mongoose'),
   validate = require('mongoose-validate');
 
 var schema = {
-	admins : [{
-		type : Schema.ObjectId,
-		ref : 'User'
-	}],
-	users : [{
-		type : mongoose.Types.ObjectId,
-		ref : 'User'
-	}],
-	creator : {
-		type : Schema.ObjectId,
-		ref : 'User',
-		required : true
-	},
-	private : {
-		type : Boolean,
-		default : false
-	},
-	name : {
-		type : String,
-		required : true,
-		unique : true
-	},
-	about : {
-		type : String,
-		required : true
-	},
-	created : {
-		type : Number,
-		default : new Date().getTime()
-	},
-	updated : {
-		type : Number,
-		default  :new Date().getTime()
-	}
+  admins : [{
+    type : Schema.ObjectId,
+    ref : 'User'
+  }],
+  users : [{
+    type : mongoose.Types.ObjectId,
+    ref : 'User'
+  }],
+  creator : {
+    type : Schema.ObjectId,
+    ref : 'User',
+    required : true
+  },
+  private : {
+    type : Boolean,
+    default : false
+  },
+  name : {
+    type : String,
+    required : true,
+    unique : true
+  },
+  about : {
+    type : String,
+    required : true
+  },
+  created : {
+    type : Number,
+    default : new Date().getTime()
+  },
+  updated : {
+    type : Number,
+    default  :new Date().getTime()
+  }
 };
 
 var MongooseSchema = new mongoose.Schema(schema);

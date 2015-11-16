@@ -6,8 +6,8 @@ var schema = {
 var MongooseSchema = new User.AbstractPersonSchema(schema);
 
 MongooseSchema.pre('save', function(next) {
-	this.type = 'Admin';
-	next();
+  this.type = 'Admin';
+  next();
 });
 
 User.Base.discriminator('Admin', MongooseSchema);

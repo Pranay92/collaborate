@@ -10,7 +10,3 @@ function setup() {
 }
 
 setup();
-
-
-
-
