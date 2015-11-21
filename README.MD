@@ -11,6 +11,7 @@ Because we have lots of paid applications out there that allow you to chat using
 
 1. You control your own chat server.
 2. Get experienced in handling complex real life scenarios and know how to scale them.
+3. Add features/ideas that are way beyond the traditional chat server thing.
 
 
 # Technology Stack (keeps getting updated)
