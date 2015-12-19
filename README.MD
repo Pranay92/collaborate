@@ -1,11 +1,11 @@
 Collaborate
 =========
 
-A well organised, structured and thought over server for chat application built using hapijs
+A well organised, structured and thought over server for chat application built using hapijs.
 
 # Why
 
-Because we have lots of paid applications out there that allow you to chat using group chats or personal. It would be awesome if you can get something out for your own that you can deploy in easy steps in your desired environment using your own database.
+Because we have lots of paid applications out there that provides group chats or personal. It would be awesome if you can get something similar that you can deploy in easy steps in your desired environment using your own database and optimizing as per your needs.
 
 # Advantages
 
@@ -22,6 +22,7 @@ Because we have lots of paid applications out there that allow you to chat using
 4. Server monitoring and logs. - PM2
 5. Server side session storage. - Redis
 6. Messaging queue - RabbitMQ
+7. Web sockets - Socket.io
 
 # [Wiki](https://github.com/Pranay92/lets-chat/wiki)
 
