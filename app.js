@@ -2,11 +2,11 @@ var hapi = require('hapi');
 require('dotenv').load();
 
 // Create a server with a host, port, and options
-var server = module.exports = new hapi.Server();
+var server = module.exports = new hapi.Server(require('config').mainServer.options);
 
-server.connection({'port' : process.env.NODE_PORT || 3000});
+server.connection(require('config').mainServer.app);
 
-server.connection({'port' : process.env.CHAT_PORT || 3001,'labels' : ['chat']});
+server.connection(require('config').chatServer);
 
 require('database');
 
@@ -16,4 +16,12 @@ require('bootstrap');
 
 server.start(function() {
 	console.log('Server is up and running');
+});
+
+server.route({
+  path  :'/*',
+  method : 'OPTIONS',
+  handler: function(request,reply) {
+    reply();
+  }
 })
