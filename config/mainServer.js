@@ -4,8 +4,18 @@ module.exports =  {
       'routes' :   {
         'cors' : {
           'origin' : ['http://localhost:8000'],
-          'headers' : ['Content-Type'],
-          credentials: true
+          'additionalHeaders' : [
+            'access-control-allow-origin',
+            'accept-encoding',
+            'accept-Language',
+            'access-control-request-method',
+            'access-control-request-headers',
+            'connection',
+            'host',
+            'origin',
+            'referer',
+            'user-agent'
+          ]
         }    
       }
     }   
