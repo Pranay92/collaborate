@@ -56,6 +56,7 @@ var schema = {
 	},
 	type : {
 		type : String,
+    enum : ['Admin','User'],
 		default : 'User'
 	}
 };
