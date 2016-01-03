@@ -13,7 +13,11 @@ function Login(request,reply) {
 	var user = reply.data,
 		token = authUtils.createToken({'id' : user.id, 'scope' : user.type});
 
-	reply.data = token;
+	reply.data = {
+    'token' : token,
+    'id' : user.id
+  };
+
 	reply.next();
 
 }

@@ -18,7 +18,7 @@ function Login(request,reply) {
   User.LocalStrategy(request.payload.username,request.payload.password,function(err,user) {
     if(err) {
       console.log(err);
-      return reply.next(err);
+      return reply.next({'message' : err, 'status' : 401});
     }
     reply.data = user;
     reply.next();
