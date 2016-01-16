@@ -140,7 +140,9 @@ function ValidateReqDelete() {
 function ValidateReqGet() {
   
   return {
-
+    'query' : {
+      'filter' : joi.any()
+    }
   };
 }
 

@@ -1,5 +1,6 @@
 var Promise = require('bluebird'),
     mongoose = Promise.promisifyAll(require('mongoose')),
+    dbUtils = require('utils/database'),
     User = mongoose.model('User');
 
 module.exports = {
@@ -54,7 +55,13 @@ function Delete(request,reply) {
 
 function Get(request,reply) {
 
-  User.find({})
+  var query = {};
+  console.log('reaching herer')
+  if(request.query.filter) {
+    query['_id'] = {'$not' : {'$in' : [dbUtils.objectId(request.query.filter)]}};
+  }
+
+  User.find(query)
     .then(function(users) {
       reply.data = users;
       reply.next();
