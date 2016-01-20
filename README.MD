@@ -44,3 +44,8 @@ This software is licensed under the MIT license specifications.
 
 1. [Pranay Dubey](https://github.com/Pranay92)
 2. [Shamsher Ansari](https://github.com/Shamsher31)
+ 
+## TODO
+
+1. Split server into two - api and socket.
+
