@@ -1,7 +1,7 @@
 Collaborate
 =========
 
-A well organised, structured and thought over server for chat application built using hapijs.
+A well organised, structured and thought over server for chat application built using hapijs. See [collaborate-client](https://github.com/Pranay92/collaborate-client) for front end.
 
 ## Why
 
