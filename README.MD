@@ -28,9 +28,7 @@ Because we have lots of paid applications out there that provides group chats or
 
 1. Do a ````npm install```` to install all the dependencies.
 2. Create a ````.env```` file and store all the mongodb credentials in them. (see [environment variables](https://github.com/Pranay92/collaborate/wiki/Environment-variables))
-3. Install `redis` for your system.
-4. Run `redis-server &` to run redis server in the background.
-5. Run the application using ````node app.js````
+3. Run the application using ````node app.js````
  
 **Note** This is server only, client will be created on a separate repo.
 
