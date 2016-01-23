@@ -1,7 +1,7 @@
 Collaborate
 =========
 
-A well organised, structured and thought over server for chat application built using hapijs.
+A well organised, structured and thought over server for chat application built using hapijs. See [collaborate-client](https://github.com/Pranay92/collaborate-client) for front end.
 
 ## Why
 
@@ -42,3 +42,8 @@ This software is licensed under the MIT license specifications.
 
 1. [Pranay Dubey](https://github.com/Pranay92)
 2. [Shamsher Ansari](https://github.com/Shamsher31)
+ 
+## TODO
+
+1. Split server into two - api and socket.
+
