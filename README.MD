@@ -29,8 +29,6 @@ Because we have lots of paid applications out there that provides group chats or
 1. Do a ````npm install```` to install all the dependencies.
 2. Create a ````.env```` file and store all the mongodb credentials in them. (see [environment variables](https://github.com/Pranay92/collaborate/wiki/Environment-variables))
 3. Run the application using ````node app.js````
- 
-**Note** This is server only, client will be created on a separate repo.
 
 ## [Wiki](https://github.com/Pranay92/lets-chat/wiki)
 
