@@ -15,6 +15,31 @@ function SetupRoutes() {
   });
 }
 
+function apiDocs(server) {
+  var pack = require('./package');
+  var inert = require('inert');
+  var vision = require('vision');
+  var hapiSwagger = require('hapi-swagger');
+  var options = {
+    info: {
+      'title': 'Collaborate API Documentation',
+      'version': pack.version,
+    }
+  };
+
+  server.register([
+    inert,
+    vision,
+    {
+      'register': hapiSwagger,
+      'options': options
+    }], function (err) {
+      if (err) {
+          console.log(err);
+      }
+  });
+}
+
 function processPath(path) {
   var pathArr = path.split('/'),
     processedPath;
@@ -28,8 +53,10 @@ function processPath(path) {
 
 function walkThroughRoutes(routes,server) {
   Object.keys(routes).forEach(function(routeName) {
+    routes[routeName].config.tags = ['api'];
     server.route(routes[routeName]);
   });
 }
 
 SetupRoutes();
+apiDocs(server);
