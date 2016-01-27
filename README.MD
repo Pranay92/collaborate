@@ -40,6 +40,7 @@ This software is licensed under the MIT license specifications.
 
 1. [Pranay Dubey](https://github.com/Pranay92)
 2. [Shamsher Ansari](https://github.com/Shamsher31)
+3. [Devendra Dhanal](https://github.com/devendradhanal)
  
 ## TODO
 
