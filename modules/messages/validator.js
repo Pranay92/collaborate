@@ -80,7 +80,9 @@ function ValidateReqGet(request,reply) {
   return {
     query : {
       from : joi.string().regex(pattern.objectId),
-      to : joi.string().regex(pattern.objectId)
+      to : joi.string().regex(pattern.objectId),
+      start : joi.number().required(),
+      end : joi.number().required()
     }
   };
 }
@@ -100,8 +102,8 @@ function ValidateReqAdd(request,reply) {
 function ValidateOwners(request,reply) {
   
   var userId = request.auth.credentials.id,
-      from = request.params.from,
-      to = request.params.to;
+      from = request.query.from,
+      to = request.query.to;
 
   if(userId == from || userId == to) {
     reply.next();
