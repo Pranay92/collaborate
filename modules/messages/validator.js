@@ -39,8 +39,8 @@ function One(request,reply) {
 function Get(request,reply) {
 
   Promise.all([
-            UserUtils.exists(request.params.from),
-            UserUtils.exists(request.params.to)
+            UserUtils.exists(request.query.from),
+            UserUtils.exists(request.query.to)
            ])
            .then(function(){
               reply.next();
@@ -78,7 +78,7 @@ function ValidateReqOne(request,reply) {
 function ValidateReqGet(request,reply) {
   
   return {
-    params : {
+    query : {
       from : joi.string().regex(pattern.objectId),
       to : joi.string().regex(pattern.objectId)
     }
