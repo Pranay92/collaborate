@@ -46,7 +46,12 @@ function Add(request,reply) {
 }
 
 function Edit(request,reply) {
-  reply.next();
+  User.update({'_id' :dbUtils.objectId(request.params.id)},{'$set' : request.payload})
+      .execAsync()
+      .then(function(){
+        reply.next();      
+      })
+      .catch(reply.next);
 }
 
 function Delete(request,reply) {

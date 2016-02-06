@@ -68,4 +68,25 @@ module.exports = {
       }
     }
   },
+  edit : {
+    method : 'PUT',
+    path : '/users/{id}',
+    config : {
+      auth : {
+        strategy : 'token',
+        scope : ['admin','user']
+      },
+      validate : Validator.validateReqEdit(),
+      handler : function(request,reply) {
+
+        var funcArray = [
+          Validator.edit,
+          Controller.Edit
+        ];
+
+        var series = new Series(funcArray);
+        series.execute(request,reply);
+      }
+    }
+  }
 }

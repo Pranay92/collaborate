@@ -65,7 +65,13 @@ function Add(request,reply) {
 }
 
 function Edit(request,reply) {
+
+  if(request.auth.credentials.id !== request.params.id) {
+    reply.next('Not authorized to edit user info');
+    return;
+  }
   reply.next();
+
 }
 
 function Delete(request,reply) {
@@ -126,7 +132,21 @@ function ValidateReqAdd() {
 function ValidateReqEdit() {
 
   return {
-
+    'params' : {
+      'id' : joi.string().regex(pattern.objectId)
+    },
+    'payload' : {
+      'name' : joi.object().keys({
+        'first' : joi.string().required(),
+        'last' : joi.string().required()
+      }),
+      'emails' : joi.array().items(joi.string().regex(pattern.email)),
+      'dob' : joi.object().keys({
+        'year' : joi.number().required(),
+        'month' : joi.number().required(),
+        'date' : joi.number().required()
+      })
+    }
   };
 }
 
