@@ -10,7 +10,7 @@ module.exports = {
     config : {
       auth : {
         strategy : 'token',
-        scope : ['admin']
+        scope : ['admin','user']
       },
       validate : Validator.validateReqOne(),
       handler : function(request,reply) {
@@ -31,7 +31,7 @@ module.exports = {
     config : {
       auth : {
         strategy : 'token',
-        scope : ['admin']
+        scope : ['admin','user']
       },
       validate : Validator.validateReqGet(),
       handler : function(request,reply) {
