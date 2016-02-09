@@ -44,5 +44,6 @@ This software is licensed under the MIT license specifications.
  
 ## TODO
 
-1. Split server into two - api and socket.
+1. Split server into two - api and socket.  
+2. Implement partial response api on places where we don't need everything to be loaded.
 
