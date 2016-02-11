@@ -81,7 +81,7 @@ module.exports = {
 
         var funcArray = [
           Validator.edit,
-          Controller.Edit
+          Controller.edit
         ];
 
         var series = new Series(funcArray);
