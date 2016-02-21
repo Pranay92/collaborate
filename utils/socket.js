@@ -1,13 +1,15 @@
-var async = require('async');
+var async = require('async'),
+    socket;
 
 module.exports = {
   initialize : Initialize
 };
 
 
-function Initialize(socket) {
+function Initialize(__socket) {
   
   var listeners = Listeners();
+  socket = __socket;
 
   async.series(listeners.map(function(listObj) {
     return function(cb) {
@@ -78,8 +80,8 @@ function MessageJoin(server) {
 
 };
 
-function Message(server) {
-
+function Message(data) {
+  socket.emit(data.to + '-msg',data);
 };
 
 function MessageEdit(server) {
