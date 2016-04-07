@@ -46,4 +46,4 @@ This software is licensed under the MIT license specifications.
 
 1. Split server into two - api and socket.  
 2. Implement partial response api on places where we don't need everything to be loaded.
-
+3. Create multi threaded node server for better load handling.
