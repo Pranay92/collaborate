@@ -1,24 +1,33 @@
 var async = require('async'),
-    socket;
+    io,
+    socket,
+    socketPool = [];
 
 module.exports = {
-  initialize : Initialize
+  initialize : Initialize,
+  setIo : SetIo
 };
 
+function SetIo(__io){
+  io = __io
+}
 
 function Initialize(__socket) {
   
   var listeners = Listeners();
-  socket = __socket;
 
   async.series(listeners.map(function(listObj) {
     return function(cb) {
-      socket.on(listObj.event,listObj.handler);
+      __socket.on(listObj.event,listObj.handler);
       cb();
     }
   }),function(err,results) {
     console.log('Added listeners for new connection');
   }); 
+
+  io.sockets.on('message',function(){
+    console.log('receiving messages');
+  })
   
 };
 
@@ -81,7 +90,8 @@ function MessageJoin(server) {
 };
 
 function Message(data) {
-  socket.emit(data.to + '-msg',data);
+  console.log(data);
+  io.emit(data.to + '-msg',data);
 };
 
 function MessageEdit(server) {
